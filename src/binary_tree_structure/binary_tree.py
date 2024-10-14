@@ -2,8 +2,12 @@ from .node import TreeNode
 
 class BinaryTree:
 
-    def __init__(self) -> None:
-        self.root = None
+    def __init__(self, node: TreeNode = None) -> None:
+        
+        if node:
+            self.root = node
+        else:
+            self.root = None
 
     # Retorna toda a árvore em ordem crescente
     def ascending_order(self, node: TreeNode = None) -> None:

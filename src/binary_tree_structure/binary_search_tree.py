@@ -23,3 +23,19 @@ class BinarySearchTree(BinaryTree):
             parent.left = TreeNode(name, number)
         else:
             parent.right = TreeNode(name, number)
+
+    # Busca algum contato pelo nome
+    def search(self, name: str, node: TreeNode = None) -> TreeNode:
+
+        if node is None:
+            node = self.root
+        
+        if not node:
+            raise IndexError('Is empty')
+        
+        if node.name == name:
+            return node
+        elif name < node.name:
+            return self.search(name, node.left)
+        else:
+            return self.search(name, node.right)
