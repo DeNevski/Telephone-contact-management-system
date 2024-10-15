@@ -69,3 +69,22 @@ def test_search_error():
     with pytest.raises(IndexError):
         binary_search_tree = BinarySearchTree()
         result = binary_search_tree.search('Fabio')
+
+def test_update():
+    name_1 = 'Fabio'
+    number_1 = 75991658743
+
+    name_2 = 'Marcos'
+    number_2 = 10992658743
+
+    binary_search_tree = BinarySearchTree()
+
+    binary_search_tree.insert(name_1, number_1)
+    binary_search_tree.insert(name_2, number_2)
+
+    binary_search_tree.update('Marcos', 22988654973)
+
+    result = binary_search_tree.search('Marcos') 
+    expected = 'Name: Marcos Number: 22988654973'
+
+    assert str(result) == expected
