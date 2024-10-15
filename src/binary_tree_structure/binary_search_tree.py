@@ -1,7 +1,6 @@
 from .binary_tree import BinaryTree
 from .node import TreeNode
 
-
 class BinarySearchTree(BinaryTree):
     
     # Insere um nó na árvore
@@ -39,3 +38,8 @@ class BinarySearchTree(BinaryTree):
             return self.search(name, node.left)
         else:
             return self.search(name, node.right)
+
+    # Atualiza algum número 
+    def update(self, name: str, new_number: int) -> None:
+        node = self.search(name)
+        node.number = new_number
