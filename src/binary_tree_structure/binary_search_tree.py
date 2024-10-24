@@ -126,3 +126,77 @@ class BinarySearchTree(BinaryTree):
         while node.left:
             node = node.left
         return node
+
+    def remove(self, name: str, node: TreeNode | None = None) -> TreeNode:
+        """
+        Remove um contato da árvore binária de busca com base no nome fornecido.
+
+        Valida se o tipo de dado recebido é o esperado.
+
+        A função procura o nó que contém o nome especificado e o remove da árvore binária de busca.
+        O processo de remoção segue as regras da árvore binária:
+        - Se o nó a ser removido não tiver filhos, ele é simplesmente removido.
+        - Se o nó tiver apenas um filho, o nó é substituído pelo filho correspondente.
+        - Se o nó tiver dois filhos, o nó é substituído pelo sucessor (o menor valor da subárvore à direita).
+
+        Se o nome fornecido corresponder ao da raiz, a função também garante que a raiz da árvore seja atualizada
+        corretamente após a remoção.
+
+        Args:
+            name (str): O nome do contato a ser removido da árvore.
+            node (TreeNode | None): O nó atual a ser verificado durante a recursão.
+            Se não for fornecido, a busca começa na raiz da árvore.
+
+        Returns:
+            TreeNode: O nó atualizado da árvore após a remoção do nó correspondente ao nome fornecido.
+
+        Raises:
+            IndexError: Se a raiz da árvore estiver vazia.
+            TypeError: Se for passado um tipo de dado não esperado.
+        """
+        name_and_number_validation(name)
+
+        if node is None:
+            node = self.root
+
+        root_validation(node)
+
+        if name < node.name:
+            node.left = self.remove(name, node.left)
+        elif name > node.name:
+            node.right = self.remove(name, node.right)
+        else:  
+            if node.left is None:
+
+                if node == self.root:
+                    self.root = node.right
+
+                return node.right
+            elif node.right is None:
+
+                if node == self.root:
+                    self.root = node.left
+
+                return node.left
+            else:
+                self.__substitute(node)
+        
+        return node
+    
+    def __substitute(self, node: TreeNode) -> None:
+        """
+        Substitui um nó com dois filhos pelo seu sucessor na árvore binária de busca.
+
+        Este método é usado quando o nó a ser removido possui dois filhos.
+        Ele encontra o sucessor do nó (o menor valor na subárvore à direita),
+        substitui o nome e o número do nó atual pelos valores do sucessor,
+        e em seguida remove o sucessor da subárvore direita,
+        garantindo que a árvore mantenha sua estrutura correta.
+
+        Args:
+            node (TreeNode): O nó da árvore que será substituído pelo seu sucessor.
+        """
+        substitute = self.min(node.right)
+        node.name = substitute.name
+        node.number = substitute.number
+        node.right = self.remove(substitute.name, node.right)
