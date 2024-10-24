@@ -1,5 +1,5 @@
 from .node import TreeNode
-from src.utils.helpers import root_validation
+from src.utils.validations import root_validation
 
 class BinaryTree:
 
