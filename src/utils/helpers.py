@@ -26,13 +26,10 @@ def node_search(name: str, node: TreeNode) -> TreeNode | None:
             return node_search(name, node.left)
         elif name > node.name:
             return node_search(name, node.right)
-    
-def root_validation(root: TreeNode) -> None | TreeNode:
+
+def node_validation(node: TreeNode) -> None:
     """
-    Faz a validação de um nó da árvore.
-    - Se for None, levanta um `IndexError`.
-    - Se não for, retorna o próprio nó.
+    Valida node e levanta um `IndexError` caso for None.
     """
-    if not root:
-        raise IndexError('Is empty')
-    return root
+    if not node:
+            raise IndexError('Name not found')
