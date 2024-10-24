@@ -1,7 +1,7 @@
 from .binary_tree import BinaryTree
 from .node import TreeNode
-from src.utils.helpers import node_search, node_validation
-from src.utils.validations import name_and_number_validation, name_verification, root_validation
+from src.utils.helpers import node_search
+from src.utils.validations import name_and_number_validation, name_verification, root_validation, node_validation
 
 class BinarySearchTree(BinaryTree):
     

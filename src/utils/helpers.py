@@ -26,10 +26,3 @@ def node_search(name: str, node: TreeNode) -> TreeNode | None:
             return node_search(name, node.left)
         elif name > node.name:
             return node_search(name, node.right)
-
-def node_validation(node: TreeNode) -> None:
-    """
-    Valida node e levanta um `IndexError` caso for None.
-    """
-    if not node:
-            raise IndexError('Name not found')

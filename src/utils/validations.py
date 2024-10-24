@@ -50,3 +50,10 @@ def name_and_number_validation(name: str, number: int | None = None) -> None:
     
     if number and not isinstance(number, int):
         raise TypeError('Number must be of type int')
+
+def node_validation(node: TreeNode) -> None:
+    """
+    Valida node e levanta um `IndexError` caso for None.
+    """
+    if not node:
+            raise IndexError('Name not found')
